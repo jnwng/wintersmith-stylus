@@ -1,4 +1,3 @@
-
 stylus = require 'stylus'
 path = require 'path'
 async = require 'async'
@@ -15,7 +14,10 @@ module.exports = (wintersmith, callback) ->
 
     render: (locals, contents, templates, callback) ->
       try
-        stylus(@_text).set('filename', this.getFilename()).render (err, css) ->
+        stylus(@_text)
+        .set('filename', this.getFilename())
+        .set('paths', [path.dirname(path.join(@_base, @_filename))])
+        .render (err, css) ->
           callback null, new Buffer css
       catch error
         callback error
