@@ -5,8 +5,14 @@
   "description": "stylus plugin for wintersmith",
   "license": "MIT",
   "dependencies": {
-    "stylus": ">= 0.0.1",
+    "stylus": ">=0.19.x",
+    "nib": ">=0.4.0",
     "async": ">= 0.0.1",
-    "coffee-script": "1.2.x"
+    "coffee-script": ">=1.2.x"
+  },
+
+  "devDependencies": {
+    "wintersmith": ">=1.0.0",
+    "mocha": ">=1.0.0"
   }
 }

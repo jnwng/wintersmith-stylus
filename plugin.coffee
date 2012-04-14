@@ -1,4 +1,5 @@
 stylus = require 'stylus'
+nib    = require 'nib'
 path = require 'path'
 async = require 'async'
 fs = require 'fs'
@@ -17,6 +18,7 @@ module.exports = (wintersmith, callback) ->
         stylus(@_text)
         .set('filename', this.getFilename())
         .set('paths', [path.dirname(path.join(@_base, @_filename))])
+        .use(nib())
         .render (err, css) ->
           if err
             callback err
