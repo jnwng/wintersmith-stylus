@@ -1,12 +1,16 @@
 wintersmith  = require('wintersmith')
+Config       = require('wintersmith/src/core/config').Config
 wsStylus     = require('./../')
+
+# new wintersmith environment
+env = wintersmith(new Config, __dirname)
 
 describe "Nib integration", ->
 
   beforeEach (done)->
 
     # Install this plugin onto wintersmith
-    wsStylus wintersmith, ->
+    wsStylus env, ->
 
       # Installed, now wintersmith can handle .styl
       done()
@@ -14,10 +18,10 @@ describe "Nib integration", ->
   it "should compile stylus with nib", (done)->
 
     # Parse contents
-    wintersmith.ContentTree.fromDirectory 'test/contents/css', __dirname, (err, tree)->
+    env.ContentTree.fromDirectory env, 'test/contents/css', (err, tree)->
 
       # For style.styl, we want to make sure styl is compiling using nib
-      tree['style.styl'].render null, null, null, (err, content)->
+      tree['style.styl'].getView() env, null, null, null, (err, content)->
 
         if content?
           content.should.equal("""
@@ -28,5 +32,3 @@ describe "Nib integration", ->
           }""")
         # yay
         done()
-        
-      

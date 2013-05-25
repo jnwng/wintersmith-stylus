@@ -1,8 +1,9 @@
 {
   "name": "wintersmith-stylus",
-  "version": "0.1.1",
+  "version": "0.3.0",
   "author": "Jon Wong <j@jnwng.com>",
   "description": "stylus plugin for wintersmith",
+  "keywords": ["wintersmith-plugin"],
   "license": "MIT",
   "dependencies": {
     "stylus": ">=0.19.x",
@@ -12,7 +13,7 @@
   },
 
   "devDependencies": {
-    "wintersmith": ">=1.0.0",
+    "wintersmith": ">=2.0.0",
     "mocha": ">=1.0.0"
   }
 }
