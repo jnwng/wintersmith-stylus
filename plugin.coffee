@@ -16,9 +16,10 @@ module.exports = (env, callback) ->
     getView: ->
       return (env, locals, contents, templates, callback) ->
         try
-          stylus(@_text)
-          .set('filename', this.getFilename())
-          .set('paths', [path.dirname(@_filepath.full)])
+          options = env.config.stylus or {}
+          options.filename = this.getFilename()
+          options.paths = [path.dirname(@_filepath.full)]
+          stylus(@_text, options)
           .use(nib())
           .render (err, css) ->
             if err
