@@ -21,6 +21,9 @@ module.exports = (env, callback) ->
           options.paths = [path.dirname(@_filepath.full)]
           stylus(@_text, options)
           .use(nib())
+          .define('url', stylus.url(
+            paths : [__dirname + '/public']
+            limit : locals.inlineSpriteMaxBytes || 0 ) )
           .render (err, css) ->
             if err
               callback err
