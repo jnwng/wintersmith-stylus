@@ -1,19 +1,15 @@
-wintersmith  = require('wintersmith')
-Config       = require('wintersmith/src/core/config').Config
-wsStylus     = require('./../')
+wintersmith = require 'wintersmith'
+{Config} = require 'wintersmith/src/core/config'
+wsStylus = require './../'
 
 # new wintersmith environment
-env = wintersmith(new Config, __dirname)
+env = wintersmith new Config, __dirname
 
 describe "Nib integration", ->
 
   beforeEach (done)->
-
     # Install this plugin onto wintersmith
-    wsStylus env, ->
-
-      # Installed, now wintersmith can handle .styl
-      done()
+    wsStylus env, done
 
   it "should compile stylus with nib", (done)->
 
@@ -30,5 +26,5 @@ describe "Nib integration", ->
             -moz-box-shadow: 0 0 1px #000;
             box-shadow: 0 0 1px #000;
           }""")
-        # yay
-        done()
+
+        do done

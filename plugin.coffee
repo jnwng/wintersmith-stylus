@@ -1,7 +1,6 @@
 stylus = require 'stylus'
 nib    = require 'nib'
 path = require 'path'
-async = require 'async'
 fs = require 'fs'
 
 module.exports = (env, callback) ->
@@ -20,12 +19,12 @@ module.exports = (env, callback) ->
           options.filename = this.getFilename()
           options.paths = [path.dirname(@_filepath.full)]
           stylus(@_text, options)
-          .use(nib())
-          .render (err, css) ->
-            if err
-              callback err
-            else
-              callback null, new Buffer css
+            .use(nib())
+            .render (err, css) ->
+              if err
+                callback err
+              else
+                callback null, new Buffer css
         catch error
           callback error
 
@@ -34,7 +33,7 @@ module.exports = (env, callback) ->
       if error
         callback error
       else
-        callback null, new StylusPlugin filepath, buffer.toString()
+        callback null, new StylusPlugin(filepath, buffer.toString())
 
   env.registerContentPlugin 'styles', '**/*.styl', StylusPlugin
-  callback()
+  do callback
