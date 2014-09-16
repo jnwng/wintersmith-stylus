@@ -14,14 +14,31 @@ module.exports = (env, callback) ->
       @_filepath.relative.replace /styl$/, 'css'
 
     getView: ->
-      return (env, locals, contents, templates, callback) ->
+      return (env, locals, contents, templates, callback) =>
+
         try
           options = env.config.stylus or {}
-          options.filename = this.getFilename()
+          options.filename = @getFilename()
           options.paths = [path.dirname(@_filepath.full)]
-          stylus(@_text, options)
-          .use(nib())
-          .render (err, css) ->
+
+          renderer = stylus(@_text, options)
+
+          # allowing to specify dependencies (including nib) via config file
+          #
+          #  "stylus": {
+          #   "dependencies": [
+          #     "nib",
+          #     "jeet"
+          #   ]
+          # }
+          dependencies = options.dependencies
+
+          if dependencies?
+            for dependency in dependencies
+              currentLib = require(dependency)
+              renderer.use(currentLib()) if currentLib?
+
+          renderer.render (err, css) ->
             if err
               callback err
             else
