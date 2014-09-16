@@ -1,1 +1,3 @@
---compilers coffee:coffee-script
+--require should
+--ui bdd
+--compilers coffee:coffee-script/register
