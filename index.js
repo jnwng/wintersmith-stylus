@@ -1,3 +1,2 @@
-var coffee = require('coffee-script');
-if (coffee.register) coffee.register();
+require('coffee-script/register');
 module.exports = require('./plugin');
