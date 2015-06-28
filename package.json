@@ -14,6 +14,7 @@
   },
   "devDependencies": {
     "mocha": "^1.21.3",
+    "should": "~4.0.4",
     "wintersmith": "^2.1.0"
   },
   "scripts": {

@@ -4,6 +4,8 @@ wsStylus = require './../'
 
 # new wintersmith environment
 env = wintersmith new Config, __dirname
+env.config.stylus ?= {}
+env.config.stylus.dependencies = ['nib']
 
 describe "Nib integration", ->
 
@@ -20,11 +22,14 @@ describe "Nib integration", ->
       tree['style.styl'].getView() env, null, null, null, (err, content)->
 
         if content?
-          content.should.equal("""
+          content.toString().should.equal("""
           body {
             -webkit-box-shadow: 0 0 1px #000;
-            -moz-box-shadow: 0 0 1px #000;
             box-shadow: 0 0 1px #000;
-          }""")
+          }
+
+          """)
+        else
+          throw err
 
         do done
