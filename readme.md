@@ -4,7 +4,13 @@
 
 Now works with [nib](http://visionmedia.github.com/nib/).
 
-### install:
+### Install:
+
+Using wintersmith:
+
+`wintersmith plugin install stylus`
+
+Using npm:
 
 `npm install wintersmith-stylus -g`
 then add `wintersmith-stylus` to your plugins in the wintersmith config
