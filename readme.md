@@ -37,6 +37,6 @@ then add `./node_modules/wintersmith-stylus/` to `config.json` like:
 
 ### Test
 
-Test is written using [Mocha](http://visionmedia.github.com/mocha/). Install it globally, then run
+Test is written using [Mocha](http://mochajs.org/). Install it globally, then run
 
     $ mocha
